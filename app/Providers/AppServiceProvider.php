@@ -24,10 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-        // dd(
-        //     Cache::get('db-connection', 'db1')
-        // );
         config(['database.default' => Cache::get('db-connection', 'db1')]);
     }
 }

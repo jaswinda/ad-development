@@ -26,19 +26,20 @@ Auth::routes([
     'register' => false,
     'verify' => true
 ]);
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/', function () {return redirect('/home');});
+
+Route::redirect('/', '/home');
 Route::post('/signin', [LoginController::class, 'signIn'])->name('auth.singin');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::view('/register', 'auth.register');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::view('/', 'welcome');
     Route::view('/email/verify', 'auth.verify')->name('verification.notice');
     Route::post('/verify-my-email/{database}/email/verify/{id}/{hash}',  [DatabaseSelectController::class, 'verifyEmailAfterDatabaseSelect']);
     Route::get('/email/verify/{id}/{hash}',[DatabaseSelectController::class,'goSelectingDatabaseForEmailVerify'])->name('verification.verify');
-    Route::post('/compress-image', [ImageCompressController::class, 'compressImage']);
     Route::post('/email/verification-notification',[DatabaseSelectController::class, 'sendEmailVerificationNotification'])->middleware(['throttle:6,1'])->name('verification.send');
+    //only for verified users
+    Route::get('/home', [HomeController::class, 'index'])->middleware(['verified'])->name('home');
+    Route::post('/compress-image', [ImageCompressController::class, 'compressImage'])->middleware(['verified']);
 });
 
 
