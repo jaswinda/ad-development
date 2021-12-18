@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-12">
                     <label class="form-label">Address</label>
-                    <input name="address" type="text" class="form-control" placeholder="Address">
+                    <input required name="address" type="text" class="form-control" placeholder="Address">
                 </div>
                 <div class="col-12 mb-2">
                     <label for="inputState" class="form-label">Database</label>
