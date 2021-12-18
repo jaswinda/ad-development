@@ -5,13 +5,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DatabaseSelectController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageCompressController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
